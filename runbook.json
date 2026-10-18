@@ -1,0 +1,40 @@
+{
+  "runbook_id": "RB-AUDEX-BK-05",
+  "title": "Audex Backup and Recovery Drill Runbook",
+  "author": "Mohamed Alseify",
+  "track": "Cloud / DevSecOps / MLOps",
+  "project": "Audex",
+  "objective": "Write and execute a sandbox backup/restore drill for configuration and database packages.",
+  "steps": [
+    {
+      "step_number": 1,
+      "phase": "Preparation",
+      "action": "Identify critical system configuration and data paths.",
+      "command_or_method": "Verify existence of audex_config.json and data directories."
+    },
+    {
+      "step_number": 2,
+      "phase": "Backup Execution",
+      "action": "Create a compressed archive with a unique timestamp.",
+      "command_or_method": "tar -czf ./backups/audex_backup_$(date +%Y%m%d_%H%M%S).tar.gz audex_config.json"
+    },
+    {
+      "step_number": 3,
+      "phase": "Disaster Simulation",
+      "action": "Simulate data loss by removing or modifying the active configuration file.",
+      "command_or_method": "rm -f audex_config.json"
+    },
+    {
+      "step_number": 4,
+      "phase": "Recovery Execution",
+      "action": "Restore the latest backup archive into the active working directory.",
+      "command_or_method": "tar -xzf ./backups/audex_backup_<TIMESTAMP>.tar.gz -C ./"
+    },
+    {
+      "step_number": 5,
+      "phase": "Verification & Health Check",
+      "action": "Validate that the restored file matches the original hash and system is operational.",
+      "command_or_method": "cat audex_config.json && echo 'System operational!'"
+    }
+  ]
+}

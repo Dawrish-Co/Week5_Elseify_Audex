@@ -1,0 +1,21 @@
+{
+  "system_name": "Audex School Intelligence Platform",
+  "environment": "sandbox",
+  "active_mode": "Audex Compass",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "audex_sandbox_db",
+    "ssl_enabled": true
+  },
+  "security": {
+    "encryption_standard": "AES-256",
+    "rbac_enabled": true,
+    "mfa_required_for_admins": true
+  },
+  "backup_policy": {
+    "frequency": "daily",
+    "retention_days": 30,
+    "storage_path": "./backups/"
+  }
+}
